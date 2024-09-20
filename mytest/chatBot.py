@@ -48,7 +48,7 @@ if prompt := st.chat_input():
     # 将对话输入模型，获得返回
     input_ids = tokenizer.apply_chat_template(st.session_state["messages"],tokenize=False,add_generation_prompt=True)
     model_inputs = tokenizer([input_ids], return_tensors="pt").to('cuda')
-    generated_ids = model.generate(model_inputs.input_ids,max_new_tokens=512)
+    generated_ids = model.generate(model_inputs.input_ids,max_new_tokens=2048)
     generated_ids = [
         output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
     ]
